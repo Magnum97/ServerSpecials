@@ -1,0 +1,7 @@
+name: Specials
+version: ${project.version}
+main: ${project.groupId}.${project.artifactId}
+authors: [Magnum1997]
+description: Server Specials
+soft-depend:
+- HeadDatabase
