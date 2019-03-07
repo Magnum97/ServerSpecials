@@ -23,9 +23,10 @@ public class Items {
 		return hdbToken;
 	}
 	
-	public ItemStack hdbToken () {
-		return hdbToken(1);
-	}
+	
+	// public ItemStack hdbToken () {
+	// 	return hdbToken(1);
+	// }
 	
 	public ItemStack butter () {
 		try {
@@ -36,8 +37,15 @@ public class Items {
 			Bukkit.getLogger().warning("Could not find head");
 		}
 		return null;
-		
-		
+	}
+	
+	public ItemStack horsemover (int amount){
+		HeadDatabaseAPI headsdatabase = new HeadDatabaseAPI();
+		ItemStack head = headsdatabase.getItemHead("25352");
+		head.setAmount(amount);
+		String title ="§dHorse Move Token";
+		ItemStack token = new ItemBuilder(head).setName(title).setLore(Arrays.asList("§aGive this token to Magnum","§aand he will transport your horse.")).toItemStack();
+		return head;
 	}
 	
 }

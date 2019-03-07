@@ -29,38 +29,49 @@ public class Commands extends BaseCommand {
 	@Description("Give player a special item")
 	@CommandPermission("specials.give")
 	public void onGive (CommandSender sender, String player, String item, @Default("1") int amount) {
+		String pre = "§7[§8SS§7]§c ";
 		Player player1 = (Player) Bukkit.getOfflinePlayer(player);
+		ItemStack token = null;
+		if (item.equalsIgnoreCase("horsemover")) {
+			token = this.itemApi.horsemover(amount);
+			give(player1, token, amount, token.getType().toString().toLowerCase());
+			return;
+		}
 		if (item.equalsIgnoreCase("hdb")) {
-			ItemStack token = this.itemApi.hdbToken(amount);
-			if (player1.getInventory().firstEmpty() != -1) {
-				player1.getInventory().addItem(token);
-				player1.sendMessage("You got " + amount + " HDb Tokens");
-			}
-			else {
-				player1.getWorld().dropItemNaturally(player1.getLocation().add(0.0D, 2.0D, 0.0D), token);
-				player1.sendMessage("You dropped " + amount + " HDb Tokens");
-			}
+			token = this.itemApi.hdbToken(amount);
+			give(player1, token, amount, token.getType().toString().toLowerCase());
+		return;
 		}
 		else {
 			try {
-				ItemStack head = this.heads.getItemHead(item);
-				head.setAmount(amount);
-				
+				token = this.heads.getItemHead(item);
+				token.setAmount(amount);
+				give(player1, token, amount, token.getType().toString().toLowerCase());
 				sender.sendMessage("§7[§8SS§7]§a Success");
-				if (player1.getInventory().firstEmpty() != -1) {
-					player1.getInventory().addItem(head);
-					player1.sendMessage("You got " + amount + " head(s)");
-				}
-				else {
-					player1.getWorld().dropItemNaturally(player1.getLocation().add(0.0D, 2.0D, 0.0D), head);
-					player1.sendMessage("You dropped " + amount + " head(s)");
-				}
 			}
-			
 			catch (NullPointerException e) {
 				sender.sendMessage("§7[§8SS§7]§c Failed");
 				e.printStackTrace();
 			}
 		}
+		if (token != null) {
+			give(player1, token, amount, item);
+		}
+		else {
+			sender.sendMessage(pre + "§cSomething went wrong.");
+		}
+	}
+	
+	private void give (Player player, ItemStack token, int amount, String item) {
+		if (player.getInventory().firstEmpty() != -1) {
+			player.getInventory().addItem(token);
+			player.sendMessage("You got " + amount + " " + item);
+		}
+		else {
+			player.getWorld().dropItemNaturally(player.getLocation().add(0.0D, 2.0D, 0.0D), token);
+			player.sendMessage("You dropped " + amount + " " + item);
+		}
+		
+		
 	}
 }

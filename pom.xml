@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.magnum.specials</groupId>
-    <artifactId>ServerSpecials</artifactId>
+    <artifactId>Specials</artifactId>
     <version>
-        b0303-2112
+        b0307-1448
     </version>
     <name>ServerSpecials</name>
 

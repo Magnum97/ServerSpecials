@@ -2,13 +2,14 @@ package me.magnum.specials;
 
 import co.aikar.commands.BukkitCommandManager;
 import com.google.common.collect.ImmutableList;
+import lombok.Getter;
 import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import me.magnum.specials.util.Listeners;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Specials extends JavaPlugin {
-	
-	Specials plugin;
+	@Getter
+	public static Specials plugin;
 	BukkitCommandManager commandManager;
 	public static HeadDatabaseAPI headDatabaseAPI;
 	
