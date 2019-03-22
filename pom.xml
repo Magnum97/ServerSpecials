@@ -7,7 +7,7 @@
     <groupId>me.magnum.specials</groupId>
     <artifactId>Specials</artifactId>
     <version>
-        b0307-1448
+        b0322-1405
     </version>
     <name>ServerSpecials</name>
 
@@ -19,19 +19,43 @@
         <author>Magnum1997</author>
 
     </properties>
+
     <repositories>
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
-
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>sonatype-oss-repo</id>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
+<!--
+        <dependency>
+            <groupId>com.github.mrivanplays</groupId>
+            <artifactId>BungeeBossbarAPI-parent</artifactId>
+            <version>1.5.1</version>
+            <packaging>pom</packaging>
+        </dependency>
+-->
+        <dependency>
+            <groupId>me.magnum.bossbar</groupId>
+            <artifactId>BossBarAPI</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.magnum.lib</groupId>
+            <artifactId>Common</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
         <!--Spigot API-->
         <dependency>
             <groupId>org.spigotmc</groupId>
@@ -61,12 +85,6 @@
             <artifactId>HeadDatabase</artifactId>
             <version>4.6.3</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>me.magnum.lib</groupId>
-            <artifactId>Common</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

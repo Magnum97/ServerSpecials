@@ -1,0 +1,38 @@
+# Only 'type' is required.
+# For a list of Materials see https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+# For a list of enchants see https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/enchantments/Enchantment.html
+SampleHead:
+  hdb: true
+  index: 450 # Use number or name ex: 450 or apple
+  meta:
+    display-name: §6Sample Item
+    lore:
+    - First line of lore
+    - Second line of lore
+    - §1Color §2support
+
+SampleItem:
+  ==: org.bukkit.inventory.ItemStack
+  type: DIAMOND_SWORD
+  damage: 1500
+  amount: 1
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: §6Sample Item
+    lore:
+    - First line of lore
+    - Second line of lore
+    - §1Color §2support
+    enchants:
+      DAMAGE_ALL: 2
+      KNOCKBACK: 7
+      FIRE_ASPECT: 1
+NotchSkull:
+  ==: org.bukkit.inventory.ItemStack
+  type: SKULL_ITEM
+  damage: 3
+  meta:
+    ==: ItemMeta
+    meta-type: SKULL
+    skull-owner: Notch

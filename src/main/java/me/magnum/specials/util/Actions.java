@@ -15,7 +15,7 @@ public class Actions {
 	private void give (Player giveTo, ItemStack item) {
 		Player player = giveTo;
 		ItemStack toGive;
-		toGive = api.hdbToken();
+		toGive = api.hdbToken(1);
 		if (player.getInventory().firstEmpty() != -1) {
 			player.getInventory().addItem(toGive);
 			player.sendMessage("§aYou have been given §6"+toGive.toString());

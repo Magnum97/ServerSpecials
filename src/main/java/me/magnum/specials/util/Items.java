@@ -22,6 +22,7 @@ public class Items {
 		hdbToken.setItemMeta(im);
 		return hdbToken;
 	}
+	public ItemStack hdbToken(){return hdbToken(1);}
 	
 	
 	// public ItemStack hdbToken () {
@@ -44,8 +45,8 @@ public class Items {
 		ItemStack head = headsdatabase.getItemHead("25352");
 		head.setAmount(amount);
 		String title ="§dHorse Move Token";
-		ItemStack token = new ItemBuilder(head).setName(title).setLore(Arrays.asList("§aGive this token to Magnum","§aand he will transport your horse.")).toItemStack();
+		ItemStack token = new ItemBuilder(head).setName(title).setLore(Arrays.asList("§aGive this token to an Owner+","§ato have your horse transported.")).toItemStack();
 		return head;
 	}
-	
+	public ItemStack horsemover(){return horsemover(1);}
 }
