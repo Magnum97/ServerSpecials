@@ -1,0 +1,19 @@
+prefix: '&a[&9Specials&a] '
+next:
+  ==: org.bukkit.inventory.ItemStack
+  type: SKULL_ITEM
+  damage: 3
+  meta:
+    ==: ItemMeta
+    meta-type: SKULL
+    display-name: §9§9Green Arrow Right
+    internal: H4sIAAAAAAAAAE2PzU6DQBhFP01MkPgYbkkGKJhZdGGk0iGdGdsiLbOjMJSfARsKWnguH1CW3t3NuWdxdQAdnvb1oNRH95WXSmpwTzJ4Rgu0wClGRmZLbCxcyzRwmuQGmpMkiYlM7Oigz9JFdn0pr4+g9fLWD5286gBwp8FDlKhBwq8cAySOBcqOgUpH4s493CPFSXV5IW00nt6IS5qZr1/dzYj/bZ0+OTgqtoNCtNvh1ERoY++UXO/MtPn85mE80Uk1ogoUCymiTVDQsCiFTxH3Vw4/sCoOY1N4q5FaTLHpfBPe2eYesWkTO8KrLeZHhfBYyf33mk7pD2lNnG+Xy/kB/AFPXTSmHAEAAA==
+prev:
+  ==: org.bukkit.inventory.ItemStack
+  type: SKULL_ITEM
+  damage: 3
+  meta:
+    ==: ItemMeta
+    meta-type: SKULL
+    display-name: §9§9Red Arrow Left
+    internal: H4sIAAAAAAAAAE2PzU6DQBSFryYmSHwMtySD/JhZuDDG0iFl0JYCw47CUH5matNCK/NcPqDjzrM6J9+5NzkmgAkPm2ES4uP01XSCG3BLanhELnJxhZFVOxxbrv9kW7gqGwv9qSxL7DiuCaY+OvLT2PHzPRgj/x6nEz+bAHBjwF1aionDD59DVOQtqvNQVDPxdU42SMSkPz6TQzrv3ohPpObLV381439dbywzTzAnbIvD57STKVo5a8GXa7uS20vR71HRbz2q3lWUhV2RELsIoitN2lYzNw5oF/WDG6mFpGqw40R0TDGHac/U/qrZTDMqaLCQTOofKpRsDnGToxe9AH4BOsJUlxwBAAA=

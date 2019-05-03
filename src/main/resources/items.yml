@@ -1,15 +1,6 @@
-# Only 'type' is required.
+# Only 'material' is required.
 # For a list of Materials see https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
 # For a list of enchants see https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/enchantments/Enchantment.html
-SampleHead:
-  hdb: true
-  index: 450 # Use number or name ex: 450 or apple
-  meta:
-    display-name: §6Sample Item
-    lore:
-    - First line of lore
-    - Second line of lore
-    - §1Color §2support
 
 SampleItem:
   ==: org.bukkit.inventory.ItemStack
@@ -36,3 +27,25 @@ NotchSkull:
     ==: ItemMeta
     meta-type: SKULL
     skull-owner: Notch
+hdb:
+  ==: org.bukkit.inventory.ItemStack
+  type: PAPER
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: §6HDb Token
+    lore:
+    - Use this to get decorative heads  # Plain text does not need ' '
+    - 'To use type: §e/hdb'             # But if you have any formatting, it should be surrounded with single 's
+horsemover:
+  ==: org.bukkit.inventory.ItemStack
+  type: SKULL_ITEM
+  damage: 3
+  meta:
+    ==: ItemMeta
+    meta-type: SKULL
+    display-name: §dHorse Move Token
+    lore:
+    - §aGive this token to an Owner+
+    - §ato have your horse transported.
+    internal: H4sIAAAAAAAAAE2OzU6DQBzE/5qYIPExvJIsy4fh4EFbY5cUELp87W0LSwvdrQ0FIz6Vj+genWQOk99MMiaACQ+70yzlx/jZ9VIYcEtaeEQucoMmQFbriMByfWxbQcM7C2lxzrHneNgEU48uYpx6cb0HYxLf0zyKqwkANwbcFVzOAn7FEiJWHVFbhbJZiK8z3SGZkOHyRM7Fsl8RnyjNNy/+dgn+db2Jl56snfDIzum8VwXaOpkUm8xuVP4Vr+sfRnMU0xRr2/GQY1bGfY0JqstYRe/ZkNCDV5fpEinisqHRnUyyMsKay4iyU7I+2Al9Vax8c6JVGHQVetbv4Q+ivQvUGAEAAA==
