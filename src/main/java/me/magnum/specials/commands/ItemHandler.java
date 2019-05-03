@@ -14,6 +14,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import static me.magnum.specials.Specials.cfg;
+import static me.magnum.specials.Specials.data;
+
 @CommandAlias("specials|ss")
 public class ItemHandler extends BaseCommand {
 	
@@ -69,8 +72,8 @@ public class ItemHandler extends BaseCommand {
 	
 	@Subcommand("reload|r")
 	public void onReload (CommandSender sender) {
-		Specials.data.reloadConfig();
-		Config.init();
+		cfg.reloadConfig();
+		data.reloadConfig();
 		Common.tell(sender, pre + "§eConfig reloaded.");
 	}
 	
@@ -83,9 +86,18 @@ public class ItemHandler extends BaseCommand {
 			return;
 		}
 		SimpleConfig data = new SimpleConfig("items.yml", Specials.getPlugin(), false);
-		
 		Player p = (Player) sender;
+		Config.specials.put(item, p.getInventory().getItemInMainHand());
 		data.set(item, p.getInventory().getItemInMainHand());
+		data.saveConfig();
+	}
+	
+	@Subcommand("removeitem|remove")
+	@CommandPermission("@specials")
+	public void onRemove(CommandSender sender, String key){
+		Common.tell(sender, pre+Config.specials.get(key).getItemMeta().getDisplayName()+" has been removed.");
+		Config.specials.remove(key);
+		data.set(key, null);
 		data.saveConfig();
 	}
 	
