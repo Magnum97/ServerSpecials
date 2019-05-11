@@ -31,7 +31,7 @@ public class InventoryBuilder implements InventoryProvider {
 		ClickableItem[] stuff = page.getPageItems();
 		if (contents.iterator("one").isPresent()) {
 			SlotIterator one = contents.iterator("one").get();
-			while (one.column() < 7) {
+			while (one.column() < 8) {
 				try {
 					if (page.getPageItems()[i]==null)
 						break;
@@ -44,7 +44,7 @@ public class InventoryBuilder implements InventoryProvider {
 		}
 		if (contents.iterator("two").isPresent()) {
 			SlotIterator two = contents.iterator("two").get();
-			while (two.column() < 7) {
+			while (two.column() < 8) {
 				try {
 					if (page.getPageItems()[i]==null)
 						break;
@@ -60,7 +60,7 @@ public class InventoryBuilder implements InventoryProvider {
 		}
 		if (contents.iterator("three").isPresent()) {
 			SlotIterator three = contents.iterator("three").get();
-			while (three.column() < 7) {
+			while (three.column() < 8) {
 				try {
 					if (page.getPageItems()[i]==null)
 						break;

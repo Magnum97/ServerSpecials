@@ -19,14 +19,6 @@ SampleItem:
       DAMAGE_ALL: 2
       KNOCKBACK: 7
       FIRE_ASPECT: 1
-NotchSkull:
-  ==: org.bukkit.inventory.ItemStack
-  type: SKULL_ITEM
-  damage: 3
-  meta:
-    ==: ItemMeta
-    meta-type: SKULL
-    skull-owner: Notch
 hdb:
   ==: org.bukkit.inventory.ItemStack
   type: PAPER
