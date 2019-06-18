@@ -94,11 +94,18 @@ public class ItemHandler extends BaseCommand {
 	
 	@Subcommand("removeitem|remove")
 	@CommandPermission("@specials")
-	public void onRemove(CommandSender sender, String key){
-		Common.tell(sender, pre+Config.specials.get(key).getItemMeta().getDisplayName()+" has been removed.");
-		Config.specials.remove(key);
-		data.set(key, null);
-		data.saveConfig();
+	@CommandCompletion("@specials")
+	public void onRemove (CommandSender sender, String key, @Optional String confirm) {
+		if (confirm.equalsIgnoreCase("yesimsure")) {
+			Common.tell(sender, pre + Config.specials.get(key).getItemMeta().getDisplayName() + " has been removed.");
+			Config.specials.remove(key);
+			data.set(key, null);
+			data.saveConfig();
+		}
+		else {
+			Common.tell(sender, pre + "&eIf you are sure you want to remove " + key +
+					" from the database append &6YesImSure &eto your command.");
+		}
 	}
 	
 	@Subcommand("show")

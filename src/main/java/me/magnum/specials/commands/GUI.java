@@ -15,7 +15,7 @@ import org.bukkit.inventory.Inventory;
 
 public class GUI extends BaseCommand {
 	
-	private final SimpleConfig data = new SimpleConfig("items.yml",Specials.getPlugin());
+	private final SimpleConfig data = Specials.data;
 	public static final SmartInventory INVENTORY = SmartInventory.builder()
 			.id("Main")
 			.manager(Specials.INVENTORY_MANAGER)
