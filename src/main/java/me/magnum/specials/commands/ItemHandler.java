@@ -4,7 +4,6 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.CommandHelp;
 import co.aikar.commands.annotation.*;
 import fr.minuskube.inv.SmartInventory;
-import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import me.magnum.lib.CheckSender;
 import me.magnum.lib.Common;
 import me.magnum.lib.SimpleConfig;
@@ -31,11 +30,12 @@ public class ItemHandler extends BaseCommand {
 			.size(6, 9)
 			.title("Main").build();
 	
-	private HeadDatabaseAPI heads = new HeadDatabaseAPI();
 	private final String pre = Config.getPREFIX();
 	
 	@Default
 	@Subcommand("gui")
+	@Description("Open GUI and view or get items")
+	@CommandPermission("specials.command.gui")
 	public void onGui (CommandSender sender) {
 		if (!(sender instanceof Player)) {
 			Common.tell(sender, "&cThis command is only for Players");
@@ -52,6 +52,7 @@ public class ItemHandler extends BaseCommand {
 		Common.tell(sender, ("Server Specials"));
 		help.showHelp();
 	}
+	
 	private Inventory newGui () {
 		Inventory gui = Bukkit.createInventory(null, 9 * 5, "Server Specials");
 		// int i = 0;
@@ -69,10 +70,11 @@ public class ItemHandler extends BaseCommand {
 	@Subcommand("give")
 	@CommandCompletion("@players|@specials")
 	@Description("Give special item to a player")
-	@CommandPermission("specials.give")
+	@CommandPermission("specials.command.give")
+	@SuppressWarnings("deprecation")
 	public void onGive (CommandSender sender, String player, String item, @Default("1") int amount) {
 		Player p = (Player) Bukkit.getOfflinePlayer(player);
-		ItemStack token = null;
+		ItemStack token;
 		
 		for (String key : specials.keySet()) {
 			if (key.equalsIgnoreCase(item)) {
@@ -80,14 +82,6 @@ public class ItemHandler extends BaseCommand {
 				give(p, token, amount);
 			}
 		}
-		//
-		// Set keys = Config.specials.keySet();
-		// Config.specials.keySet().forEach(key->{
-		// key.compareToIgnoreCase(item)
-		// });
-		// if (Config.specials.keySet. (item)) {
-		// 	token = Config.specials.get(item);
-		// 	give(p, token, amount);
 	}
 	
 	
@@ -103,6 +97,7 @@ public class ItemHandler extends BaseCommand {
 	}
 	
 	@Subcommand("reload|r")
+	@CommandPermission("specials.command.reload")
 	public void onReload (CommandSender sender) {
 		cfg.reloadConfig();
 		data.reloadConfig();
@@ -112,7 +107,7 @@ public class ItemHandler extends BaseCommand {
 	@Subcommand("save")
 	@Description("Hold and item and use this command to save it to items.yml. " +
 			"Recommended way to make new items. You can then edit the items.yml")
-	@CommandPermission("specials.save")
+	@CommandPermission("specials.command.save")
 	public void onSave (CommandSender sender, String item) { //todo Add confirmation message
 		if (!CheckSender.isPlayer(sender)) {
 			return;
@@ -125,9 +120,9 @@ public class ItemHandler extends BaseCommand {
 	}
 	
 	@Subcommand("removeitem|remove") //todo Add confirmation / fail message
-	@CommandPermission("@specials")
 	@CommandCompletion("@specials")
-	public void onRemove (CommandSender sender, String key, @Default("") String confirm) {
+	@CommandPermission("specials.command.remove")
+	public void onRemove (CommandSender sender, String key, @Default(" ") String confirm) {
 		if (confirm.equalsIgnoreCase("yesimsure")) {
 			Common.tell(sender, pre + specials.get(key).getItemMeta().getDisplayName() + " has been removed.");
 			specials.remove(key);
@@ -141,6 +136,8 @@ public class ItemHandler extends BaseCommand {
 	}
 	
 	@Subcommand("show")
+	@CommandPermission("specials.command.show")
+	@Description("View a list of saved specials")
 	public void onShow (CommandSender sender) {
 		for (String key : specials.keySet()) {
 			String item = specials.get(key).getItemMeta().getDisplayName();

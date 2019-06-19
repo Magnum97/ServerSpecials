@@ -17,12 +17,12 @@ public class Config extends SimpleConfig {
 	public static ItemStack NEXT;
 	@Getter
 	public static ItemStack PREV;
-	private SimpleConfig cfg = Specials.cfg;
-	private SimpleConfig data = Specials.data;
+	private final SimpleConfig cfg = Specials.cfg;
+	private final SimpleConfig data = Specials.data;
 	
 	
-	private Config (String filename) {
-		super(filename, Specials.getPlugin());
+	private Config () {
+		super("items.yml", Specials.getPlugin());
 	}
 	
 	private void onLoad () {
@@ -51,7 +51,7 @@ public class Config extends SimpleConfig {
 	}
 	
 	public static void init () {
-		new Config("items.yml").onLoad();
+		new Config().onLoad();
 	}
 	
 }

@@ -19,15 +19,15 @@ public class InventoryBuilder implements InventoryProvider {
 	
 	@Override
 	public void init (Player player, InventoryContents contents) {
-		ItemBuilder n = new ItemBuilder(Config.getNEXT()).setName("§aNext Page");
-		ItemBuilder p = new ItemBuilder(Config.getPREV()).setName("§cPrevious Page");
+		ItemBuilder next = new ItemBuilder(Config.getNEXT()).setName("§aNext Page");
+		ItemBuilder prev = new ItemBuilder(Config.getPREV()).setName("§cPrevious Page");
 		Pagination page = contents.pagination();
 		ArrayList <ItemStack> list = new ArrayList <>(Config.specials.values());
 		contents.newIterator("one", SlotIterator.Type.HORIZONTAL, 1, 1);
 		contents.newIterator("two", SlotIterator.Type.HORIZONTAL, 2, 1);
 		contents.newIterator("three", SlotIterator.Type.HORIZONTAL, 3, 1);
 		int i = 0;
-		ClickableItem[] stuff = page.getPageItems();
+		// ClickableItem[] stuff = page.getPageItems(); //todo is this needed anymore?
 		if (contents.iterator("one").isPresent()) {
 			SlotIterator one = contents.iterator("one").get();
 			while (one.column() < 8) {
@@ -73,13 +73,13 @@ public class InventoryBuilder implements InventoryProvider {
 		page.setItems(toClickity(list));
 		page.setItemsPerPage(21);
 		
-		contents.fill(ClickableItem.empty(new ItemBuilder(Material.STAINED_GLASS_PANE).setDyeColor(DyeColor.LIGHT_BLUE).toItemStack()));
+		contents.fill(ClickableItem.empty(new ItemBuilder(Material.STAINED_GLASS_PANE).setDyeColor(DyeColor.WHITE).toItemStack()));
 		
 		page.addToIterator(contents.newIterator(SlotIterator.Type.HORIZONTAL, 1, 1));
 		
-		contents.set(5, 3, ClickableItem.of(new ItemStack(p.toItemStack()),
+		contents.set(5, 3, ClickableItem.of(new ItemStack(prev.toItemStack()),
 		                                    e -> ItemHandler.INVENTORY.open(player, page.previous().getPage())));
-		contents.set(5, 5, ClickableItem.of(new ItemStack(n.toItemStack()),
+		contents.set(5, 5, ClickableItem.of(new ItemStack(next.toItemStack()),
 		                                    e -> ItemHandler.INVENTORY.open(player, page.next().getPage())));
 	}
 
