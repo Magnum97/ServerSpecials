@@ -1,5 +1,5 @@
-name: Specials
-version: ${project.version}
-main: ${project.groupId}.${project.artifactId}
+name: @NAME@
+main: @MAIN@
+version: @VERSION@
 authors: [Magnum1997]
 description: Make and give items special to your server.
