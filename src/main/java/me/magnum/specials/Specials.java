@@ -5,10 +5,8 @@ import com.google.common.collect.ImmutableList;
 import fr.minuskube.inv.InventoryManager;
 import lombok.Getter;
 import lombok.Setter;
-import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import me.magnum.lib.Common;
 import me.magnum.lib.SimpleConfig;
-import me.magnum.specials.commands.GUI;
 import me.magnum.specials.commands.ItemHandler;
 import me.magnum.specials.config.Config;
 import me.magnum.specials.util.Listeners;
@@ -79,6 +77,5 @@ public class Specials extends JavaPlugin {
 					return ImmutableList.of(Config.specials.keySet().toString());
 				});
 		commandManager.registerCommand(new ItemHandler());
-		commandManager.registerCommand(new GUI());
 	}
 }

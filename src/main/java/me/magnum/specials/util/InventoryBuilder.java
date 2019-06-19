@@ -5,7 +5,6 @@ import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
 import fr.minuskube.inv.content.Pagination;
 import fr.minuskube.inv.content.SlotIterator;
-import me.magnum.specials.commands.GUI;
 import me.magnum.specials.commands.ItemHandler;
 import me.magnum.specials.config.Config;
 import org.bukkit.DyeColor;
@@ -79,9 +78,9 @@ public class InventoryBuilder implements InventoryProvider {
 		page.addToIterator(contents.newIterator(SlotIterator.Type.HORIZONTAL, 1, 1));
 		
 		contents.set(5, 3, ClickableItem.of(new ItemStack(p.toItemStack()),
-		                                    e -> GUI.INVENTORY.open(player, page.previous().getPage())));
+		                                    e -> ItemHandler.INVENTORY.open(player, page.previous().getPage())));
 		contents.set(5, 5, ClickableItem.of(new ItemStack(n.toItemStack()),
-		                                    e -> GUI.INVENTORY.open(player, page.next().getPage())));
+		                                    e -> ItemHandler.INVENTORY.open(player, page.next().getPage())));
 	}
 
 	
