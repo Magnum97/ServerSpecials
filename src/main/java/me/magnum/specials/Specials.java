@@ -5,7 +5,6 @@ import com.google.common.collect.ImmutableList;
 import fr.minuskube.inv.InventoryManager;
 import lombok.Getter;
 import lombok.Setter;
-import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import me.magnum.lib.Common;
 import me.magnum.lib.SimpleConfig;
 import me.magnum.specials.commands.GUI;
@@ -17,20 +16,20 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 
 public class Specials extends JavaPlugin {
-	
+
 	@Getter
 	public static Specials plugin;
 	@Getter @Setter public String prefix;
-	
+
 	public static SimpleConfig cfg;
 	public static SimpleConfig data;
-	
+
 	public static InventoryManager INVENTORY_MANAGER;
-	
+
 	@Override
 	public void onEnable () {
 		plugin = this;
-		
+
 		Common.setInstance(plugin);
 		cfg = new SimpleConfig("config.yml", plugin);
 		Common.log("Checking for existing config file...");
@@ -41,12 +40,12 @@ public class Specials extends JavaPlugin {
 		Config.init();
 		registerCommands();
 	}
-	
+
 	@Override
 	public void onDisable () {
 		super.onDisable();
 	}
-	
+
 	private boolean checkHDb () {
 		boolean hdb;
 		if (getServer().getPluginManager().getPlugin("HeadDatabase") == null) {
@@ -57,7 +56,7 @@ public class Specials extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new Listeners(), plugin);
 		return true;
 	}
-	
+
 	private boolean checkFile () {
 		final File file = new File(plugin.getDataFolder(), "items.yml");
 		if (file.exists()) {
@@ -68,7 +67,7 @@ public class Specials extends JavaPlugin {
 		}
 		return !file.exists();
 	}
-	
+
 	@SuppressWarnings("deprecated")
 	private void registerCommands () {
 		BukkitCommandManager commandManager;
