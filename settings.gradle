@@ -3,3 +3,4 @@
  */
 
 rootProject.name = 'Specials'
+includeBuild '/home/rich/java/Core'
