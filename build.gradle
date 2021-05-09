@@ -41,7 +41,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     compileOnly 'me.arcaniax:HeadDatabase:4.6.3'
     implementation 'me.magnum.lib:CommonLibrary:1.0.2-SNAPSHOT'
-    shadow 'fr.minuskube.inv:smart-invs:1.2.6'
+    shadow 'fr.minuskube.inv:smart-invs:1.2.7'
     implementation 'co.aikar:acf-paper:0.5.0-SNAPSHOT'
 }
 
