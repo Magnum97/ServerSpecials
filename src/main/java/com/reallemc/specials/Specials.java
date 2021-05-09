@@ -1,19 +1,18 @@
-package me.magnum.specials;
+package com.reallemc.specials;
 
-import co.aikar.commands.BukkitCommandManager;
 import com.google.common.collect.ImmutableList;
 import fr.minuskube.inv.InventoryManager;
 import lombok.Getter;
 import lombok.Setter;
-import me.magnum.lib.Common;
-import me.magnum.lib.SimpleConfig;
-import me.magnum.specials.commands.ItemHandler;
-import me.magnum.specials.config.Config;
+import com.reallemc.specials.commands.ItemHandler;
+import com.reallemc.specials.config.Config;
 import org.bukkit.plugin.java.JavaPlugin;
+import com.reallemc.*;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 
-import static me.magnum.specials.config.Config.specials;
+import static com.reallemc.specials.config.Config.specials;
 
 public class Specials extends JavaPlugin {
 
@@ -23,8 +22,8 @@ public class Specials extends JavaPlugin {
 	@Setter
 	public String prefix;
 	
-	public static SimpleConfig cfg;
-	public static SimpleConfig data;
+	public static Yaml cfg;
+	public static Yaml data;
 
 	public static InventoryManager INVENTORY_MANAGER;
 
@@ -32,11 +31,10 @@ public class Specials extends JavaPlugin {
 	public void onEnable () {
 		plugin = this;
 
-		Common.setInstance(plugin);
-		cfg = new SimpleConfig("config.yml", plugin);
+		cfg = new Yaml("config.yml", plugin);
 		Common.log("Checking for existing config file...");
 		boolean useDefaults = checkFile();
-		data = new SimpleConfig("items.yml", plugin, useDefaults);
+		data = new Yaml("items.yml", plugin, useDefaults);
 		INVENTORY_MANAGER = new InventoryManager(plugin);
 		INVENTORY_MANAGER.init();
 		Config.init();
@@ -65,8 +63,8 @@ public class Specials extends JavaPlugin {
 	
 	@SuppressWarnings("deprecation")
 	private void registerCommands () {
-		BukkitCommandManager commandManager;
-		commandManager = new BukkitCommandManager(this);
+		PaperCommandManager commandManager;
+		commandManager = new PaperCommandManager(this);
 		commandManager.enableUnstableAPI("help");
 		commandManager.getCommandCompletions()
 				.registerAsyncCompletion("specials", c -> ImmutableList.of(specials.keySet().toString()));

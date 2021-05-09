@@ -1,9 +1,9 @@
-package me.magnum.specials.config;
+package com.reallemc.specials.config;
 
+import com.reallemc.specials.Specials;
 import lombok.Getter;
 import me.magnum.lib.Common;
 import me.magnum.lib.SimpleConfig;
-import me.magnum.specials.Specials;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;

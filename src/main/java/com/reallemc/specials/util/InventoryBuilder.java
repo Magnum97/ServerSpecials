@@ -1,12 +1,12 @@
-package me.magnum.specials.util;
+package com.reallemc.specials.util;
 
+import com.reallemc.specials.config.Config;
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
 import fr.minuskube.inv.content.Pagination;
 import fr.minuskube.inv.content.SlotIterator;
-import me.magnum.specials.commands.ItemHandler;
-import me.magnum.specials.config.Config;
+import com.reallemc.specials.commands.ItemHandler;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

@@ -1,24 +1,20 @@
-package me.magnum.specials.commands;
+package com.reallemc.specials.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.CommandHelp;
 import co.aikar.commands.annotation.*;
+import com.reallemc.specials.Specials;
+import com.reallemc.specials.config.Config;
+import com.reallemc.specials.util.InventoryBuilder;
 import fr.minuskube.inv.SmartInventory;
 import me.magnum.lib.CheckSender;
 import me.magnum.lib.Common;
 import me.magnum.lib.SimpleConfig;
-import me.magnum.specials.Specials;
-import me.magnum.specials.config.Config;
-import me.magnum.specials.util.InventoryBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-import static me.magnum.specials.Specials.cfg;
-import static me.magnum.specials.Specials.data;
-import static me.magnum.specials.config.Config.specials;
 
 @CommandAlias("specials|ss")
 public class ItemHandler extends BaseCommand {
@@ -76,9 +72,9 @@ public class ItemHandler extends BaseCommand {
 		Player p = (Player) Bukkit.getOfflinePlayer(player);
 		ItemStack token;
 		
-		for (String key : specials.keySet()) {
+		for (String key : Config.specials.keySet()) {
 			if (key.equalsIgnoreCase(item)) {
-				token = specials.get(key);
+				token = Config.specials.get(key);
 				give(p, token, amount);
 			}
 		}
@@ -100,8 +96,8 @@ public class ItemHandler extends BaseCommand {
 	@Subcommand("reload|r")
 	@CommandPermission("specials.command.reload")
 	public void onReload (CommandSender sender) {
-		cfg.reloadConfig();
-		data.reloadConfig();
+		Specials.cfg.reloadConfig();
+		Specials.data.reloadConfig();
 		Common.tell(sender, pre + "§eConfig reloaded.");
 	}
 
@@ -115,7 +111,7 @@ public class ItemHandler extends BaseCommand {
 		}
 		SimpleConfig data = new SimpleConfig("items.yml", Specials.getPlugin(), false);
 		Player p = (Player) sender;
-		specials.put(item, p.getInventory().getItemInMainHand());
+		Config.specials.put(item, p.getInventory().getItemInMainHand());
 		data.set(item, p.getInventory().getItemInMainHand());
 		data.saveConfig();
 	}
@@ -125,10 +121,10 @@ public class ItemHandler extends BaseCommand {
 	@CommandPermission("specials.command.remove")
 	public void onRemove (CommandSender sender, String key, @Default(" ") String confirm) {
 		if (confirm.equalsIgnoreCase("yesimsure")) {
-			Common.tell(sender, pre + specials.get(key).getItemMeta().getDisplayName() + " has been removed.");
-			specials.remove(key);
-			data.set(key, null);
-			data.saveConfig();
+			Common.tell(sender, pre + Config.specials.get(key).getItemMeta().getDisplayName() + " has been removed.");
+			Config.specials.remove(key);
+			Specials.data.set(key, null);
+			Specials.data.saveConfig();
 		}
 		else {
 			Common.tell(sender, pre + "&eIf you are sure you want to remove " + key +
@@ -140,8 +136,8 @@ public class ItemHandler extends BaseCommand {
 	@CommandPermission("specials.command.show")
 	@Description("View a list of saved specials")
 	public void onShow (CommandSender sender) {
-		for (String key : specials.keySet()) {
-			String item = specials.get(key).getItemMeta().getDisplayName();
+		for (String key : Config.specials.keySet()) {
+			String item = Config.specials.get(key).getItemMeta().getDisplayName();
 			sender.sendMessage(pre + key + ": " + item);
 		}
 	}

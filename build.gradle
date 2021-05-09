@@ -1,17 +1,16 @@
 // Configure Auto Relocation
 import com.github.jengelman.gradle.plugins.shadow.tasks.ConfigureShadowRelocation
 
-// We use this to replace version in plugin.yml
-import org.apache.tools.ant.filters.ReplaceTokens
-
 plugins {
     id 'java'
     id 'application'
+    id 'io.freefair.lombok' version '5.3.0'
+    id 'kr.entree.spigradle' version '2.2.3'
     id 'com.github.johnrengelman.shadow' version '5.0.0'
 }
 
-group = 'me.magnum.specials'
-version = '1.2.0'
+group = 'com.reallemc'
+version = '1.2.1'
 description = 'Create and give special items to players'
 archivesBaseName = 'Specials' // Put your artifactId here
 mainClassName = 'me.magnum.specials.Specials'
@@ -19,13 +18,18 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    mavenLocal()
+    mavenLocal() {
+        content {
+            includeGroup 'com.reallemc'
+        }
+    }
     mavenCentral()
     jcenter()
-    maven { url = "https://repo.aikar.co/content/groups/aikar/" }
-    maven { url = "https://hub.spigotmc.org/nexus/content/groups/public/" }
+    maven { url "https://repo.aikar.co/content/groups/aikar/" }
+    maven { url "https://hub.spigotmc.org/nexus/content/groups/public/" }
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots" } // Spigot Repo
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" } // Sonatype snapshots
+    maven { url 'https://papermc.io/repo/repository/maven-public/' }
     maven { url 'https://jitpack.io' }
 }
 compileJava {
@@ -36,40 +40,25 @@ compileJava {
 
 dependencies {
 //    shadow 'junit:junit:3.8.2' 
-    compileOnly 'org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT'
-    compileOnly 'org.projectlombok:lombok:1.18.8'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
-    compileOnly 'me.arcaniax:HeadDatabase:4.6.3'
-    implementation 'me.magnum.lib:CommonLibrary:1.0.2-SNAPSHOT'
+//    compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
+//    compileOnly paper()
+//    implementation 'co.aikar:acf-paper:0.5.0-SNAPSHOT'
+    compileOnly 'com.github.Arcaniax-Development:HeadDatabase-API:faa767a090'
+//    compileOnly 'com.reallemc:Core:0.0.1'
     shadow 'fr.minuskube.inv:smart-invs:1.2.6'
-    implementation 'co.aikar:acf-paper:0.5.0-SNAPSHOT'
+//    implementation 'com.github.kangarko:Foundation:5.8.1'
 }
+spigot {
 
+}
 // Minimizing an shadow JAR
 shadowJar {
     minimize()
 }
 
-/* This will replace '@VERSION@' in the plugin.yml with the version declared above, just put '@VERSION@' for the version in the plugin.yml Example plugin.yml: 
-
-name: @NAME@
-main: @MAIN@
-version: @VERSION@
-authors: [Magnum1997]
-description: Make and give items special to your server.
-
-*/
-
-processResources {
-    filter ReplaceTokens, tokens: [
-            "VERSION": version,
-            "NAME"   : archivesBaseName,
-            "MAIN"   : mainClassName,
-    ]
-}
 task relocateShadowJar(type: ConfigureShadowRelocation) {
     target = tasks.shadowJar
-//    prefix = "sha" // Default value is "shadow"
+    prefix = "com.realle" // Default value is "shadow"
 
 }
 
@@ -77,7 +66,12 @@ tasks.shadowJar.dependsOn tasks.relocateShadowJar
 
 build.dependsOn shadowJar
 
-compileJava.options.encoding = 'UTF-8' // Encode your source code with UTF-8
+compileJava {
+    options.encoding = 'UTF-8' // Encode your source code with UTF-8
+    options.compilerArgs += ["-parameters"]
+    options.fork = true
+    options.forkOptions.executable = 'javac'
+}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

@@ -1,4 +1,4 @@
-package me.magnum.specials.util;
+package com.reallemc.specials.util;
 
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
